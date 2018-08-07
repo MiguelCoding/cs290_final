@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(method="POST" , action="/login/order",autocomplete='on')
+    .form-group
+      select
+        option(value='Brownies') Brownies
+        option(value='Cookies') Cookies
+        option(value='Chocolate') Chocolate
+        option(value='Pizza') Pizza
+    .form-group
+      button.btn.btn-primary(type="submit") Look for stores
+  p
+    a(href='/') Go Home
