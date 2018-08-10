@@ -7,7 +7,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/map', function(req, res, next) {
-  res.render('map', { title: 'Stores near you' });
+  storedApiKeys = require('../config/apicredentials.json');
+  res.render('map', { apiKeys: storedApiKeys, title: 'Stores near you' });
 });
 
 module.exports = router;
