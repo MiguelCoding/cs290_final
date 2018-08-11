@@ -10,6 +10,12 @@ function retrieveMenu(id,callback) {
   });
 };
 
+function retrieveItem(id,callback) {
+  conPool.query("select * from final_items where ID=?",[id],(err,results)=>{
+    callback(err,results);
+  });
+};
+
 function insertItem(data,callback) {
   conPool.query("insert into final_items(STORE_ID,TYPE,ITEM_COST) values (?,?,?)",[data.STORE_ID,data.TYPE,data.COST],(err,results) => {
     callback(err,results);
@@ -30,6 +36,7 @@ function deleteItem(id,callback) {
 
 module.exports = {
   retrieveMenu: retrieveMenu,
+  retrieveItem: retrieveItem,
   insertItem: insertItem,
   updateItem: updateItem,
   deleteItem: deleteItem

@@ -24,7 +24,7 @@ block content
         td.cell
           button.btn.btn-info(type="button" onclick='edit('+JSON.stringify(course)+')') Edit
         td.cell
-          form(id="deleteItemform"+course.ID,method="POST", action="../deleteItem")
+          form(id="deleteItemform"+course.ID,method="POST", action="./deleteItem")
             input(type='hidden',name='id',value=item.ID)
             input(type='button', name='delete', value='Delete' id="deleteItemBtn" onClick='append('+JSON.stringify(item)+')' data-toggle="modal" data-target="#confirm-delete").btn.btn-danger
         - index ++
@@ -39,11 +39,11 @@ block content
           a#submitModal.btn.btn-danger(href='#') Delete
   script.
       function edit(item){
-      location="../editItem?itemId=" + item.ID;
+      location="./editItem?itemId=" + item.ID;
       };
 
       function enroll(){
-      href="../addItem";
+      href="./addItem";
       window.location.href = this.href;
       };
 
