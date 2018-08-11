@@ -6,53 +6,50 @@ block content
     a(href='/') Go Home
   p
     a(href='/map') Store Map
-  h3 Create a new user
+  h3 Edit your information
   form(method="POST", action="./editUser",autocomplete='on')
     .form-group
       label(for="Email") Email
-      input#EMAIL.form-control( type="email" name="EMAIL", required, autofocus="autofocus", placeholder="Enter a valid email address")
-    .form-group
-      label(for="Username") Username
-      input#USER.form-control( name="USER", required, autofocus="autofocus", placeholder="Enter your desired username")
+      input#EMAIL.form-control( type="email" name="EMAIL", required, autofocus="autofocus", placeholder=data.USER)
     .form-group
       label(for="Password") Password
-      input#PASSWORD_1.form-control( type="password", name="PASSWORD_1", required, autofocus="autofocus", placeholder="Enter your password")
+      input#PASSWORD_1.form-control( type="password", name="PASSWORD_1", required, autofocus="autofocus", placeholder=data.PASSWORD)
     .form-group
       label(for="Password") Verify password
-      input#PASSWORD_2.form-control( type="password", name="PASSWORD_2" ,required ,autofocus="autofocus", placeholder="Verify your password")
+      input#PASSWORD_2.form-control( type="password", name="PASSWORD_2" ,required ,autofocus="autofocus", placeholder=data.PASSWORD)
     .form-group
       label(for="First Name") First Name
-      input#NAME_FIRST.form-control( name="NAME_FIRST", required, autofocus="autofocus", placeholder="First name")
+      input#NAME_FIRST.form-control( type="text", name="NAME_FIRST", required, autofocus="autofocus", placeholder=data.NAME_FIRST)
     .form-group
       label(for="Middle Name") Middle Name
-      input#NAME_MIDDLE.form-control( name="NAME_MIDDLE", autofocus="autofocus", placeholder="Middle name")
+      input#NAME_MIDDLE.form-control( type="text", name="NAME_MIDDLE", autofocus="autofocus", placeholder=data.NAME_MIDDLE)
     .form-group
       label(for="Last Name") Last Name
-      input#NAME_LAST.form-control( name="NAME_LAST", required, autofocus="autofocus", placeholder="Last name")
+      input#NAME_LAST.form-control( type="text", name="NAME_LAST", required, autofocus="autofocus", placeholder=data.NAME_LAST)
     .form-group
       label(for="Address") Address
-      input#ADDRESS_STREET.form-control( name="ADDRESS_STREET", required, autofocus="autofocus", placeholder="123 Demo Lane")
+      input#ADDRESS_STREET.form-control( type="text", name="ADDRESS_STREET", required, autofocus="autofocus", placeholder=data.ADDRESS_STREET)
     .form-group
     label(for="City") City
-      input#ADDRESS_CITY.form-control( name="ADDRESS_CITY", required, autofocus="autofocus", placeholder="Corvallis")
+      input#ADDRESS_CITY.form-control( type="text", name="ADDRESS_CITY", required, autofocus="autofocus", placeholder=data.ADDRESS_CITY)
     .form-group
       label(for="State") State
-      input#ADDRESS_STATE.form-control( name="ADDRESS_STATE", required, autofocus="autofocus", placeholder="Oregon")
+      input#ADDRESS_STATE.form-control( type="text", name="ADDRESS_STATE", required, autofocus="autofocus", placeholder=data.ADDRESS_STATE)
     .form-group
       label(for="Zip Code") Zip Code
-      input#ADDRESS_ZIP.form-control( name="ADDRESS_ZIP", required, autofocus="autofocus", placeholder="12345")
+      input#ADDRESS_ZIP.form-control( type="text", name="ADDRESS_ZIP", required, autofocus="autofocus", placeholder=data.ADDRESS_ZIP)
     .form-group
       label(for="Home Telephone") Home Telephone
-      input#PHONE_HOME.form-control( type="tel", name="PHONE_HOME", autofocus="autofocus", placeholder="5551231234")
+      input#PHONE_HOME.form-control( type="tel", name="PHONE_HOME", autofocus="autofocus", placeholder=data.PHONE_HOME)
     .form-group
       label(for="Mobile Telephone") Mobile Telephone
-      input#PHONE_MOBILE.form-control( type="tel", name="PHONE_MOBILE", autofocus="autofocus", placeholder="5551231234")
+      input#PHONE_MOBILE.form-control( type="tel", name="PHONE_MOBILE", autofocus="autofocus", placeholder=data.PHONE_MOBILE)
     .form-group
       label(for="Work Telephone") Work Telephone
-      input#PHONE_WORK.form-control( type="tel", name="PHONE_WORK", autofocus="autofocus", placeholder="5551231234")
+      input#PHONE_WORK.form-control( type="tel", name="PHONE_WORK", autofocus="autofocus", placeholder=data.PHONE_WORK)
     <hr>
     .form-group
         button.btn.btn-primary(type="submit") Save
-  form(method="get", action="/")
+  form(method="GET", action="/")
     .form-group
         button.btn.btn-default(type="submit") Cancel

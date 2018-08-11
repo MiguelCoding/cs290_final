@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  p
+    a(href='/') Go Home
+  p
+    a(href='/map') Store Map
+  h3 Create a new user
+  form(method="POST", action="./editItem",autocomplete='on')
+    .form-group
+      label(for="Item") Item
+      input#TYPE.form-control( type="text" name="TYPE", required, autofocus="autofocus", placeholder=data.TYPE)
+    .form-group
+      label(for="Price") Price
+      input#ITEM_COST.form-control( type="text", name="ITEM_COST", autofocus="autofocus", placeholder=data.ITEM_COST)
+    <hr>
+    .form-group
+        button.btn.btn-primary(type="submit") Save
+  form(method="GET", action="/")
+    .form-group
+        button.btn.btn-default(type="submit") Cancel
