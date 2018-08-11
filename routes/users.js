@@ -10,6 +10,11 @@ router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Login here' });
 });
 
+router.post('/login', function(req, res, next) {
+  var user = req.body;
+  res.render('/users', { user, title: 'Welcome back!' });
+});
+
 router.get('/registerUser', function(req, res, next) {
   res.render('register-user', { title: 'Register a new user' });
 });

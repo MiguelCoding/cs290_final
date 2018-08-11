@@ -2,6 +2,15 @@ extends layout
 
 block content
   h1= title
+  form(method="POST", action="/login",autocomplete='on')
+    .form-group
+      label(for="Username) Username
+      input#USERNAME.form-control( name="USERNAME", required, autofocus="autofocus", placeholder="Username")
+    .form-group
+      label(for="Password") Password
+      input#PASSWORD.form-control( name="PASSWORD", required, autofocus="autofocus", placeholder="Enter your password")
+    .form-group
+        button.btn.btn-primary(type="submit") Login
   p
     a(href='/') Go Home
   p
