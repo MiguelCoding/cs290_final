@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+  p
+    a(href='/') Go Home
+  p
+    a(href='/map') Store Map
+  h3 Create a new store
+  form(method="POST", action="./editStore",autocomplete='on')
+    .form-group
+      label(for="Store Name") Store Name
+      input#NAME_STORE.form-control( name="NAME_STORE", required, autofocus="autofocus", placeholder="Store name")
+    .form-group
+      label(for="Address") Address
+      input#ADDRESS_STREET.form-control( name="ADDRESS_STREET", required, autofocus="autofocus", placeholder="123 Demo Lane")
+    .form-group
+      label(for="City") City
+      input#ADDRESS_CITY.form-control( name="ADDRESS_CITY", required, autofocus="autofocus", placeholder="Corvallis")
+    .form-group
+      label(for="State") State
+      input#ADDRESS_STATE.form-control( name="ADDRESS_STATE", required, autofocus="autofocus", placeholder="Oregon")
+    .form-group
+      label(for="Zip Code") Zip Code
+      input#ADDRESS_ZIP.form-control( name="ADDRESS_ZIP", required, autofocus="autofocus", placeholder="12345")
+    .form-group
+      label(for="Delivery Fee") Delivery Fee
+      input#DELIVERY_FEE.form-control( name="DELIVERY_FEE", required, autofocus="autofocus", placeholder="5.00")
+    .form-group
+      label(for="Cost per mile") Cost per mile
+      input#COST_PER_MILE.form-control( name="COST_PER_MILE", required, autofocus="autofocus", placeholder="0.75")
+    .form-group
+      label(for="Telephone 1") Telephone 1
+      input#PHONE_1.form-control( type="tel", name="PHONE_1", autofocus="autofocus", placeholder="5551231234")
+    .form-group
+      label(for="Telephone") Telephone 2
+      input#PHONE_2.form-control( type="tel", name="PHONE_2", autofocus="autofocus", placeholder="5551231234")
+      <hr>
+    .form-group
+        button.btn.btn-primary(type="submit") Save
+  form(method="get", action="/")
+    .form-group
+        button.btn.btn-default(type="submit") Cancel
