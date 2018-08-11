@@ -48,6 +48,14 @@ router.post('/editUser', function(req, res, next) {
     res.redirect('/users');
 });
 
+router.post('/deleteUser', function(req, res, next) {
+  var id = req.body.id;
+  userModel.deleteUser(id,(err,results) => {
+    if (err) throw err;
+    res.redirect('/view-users');
+  });
+});
+
 // Routes for stores
 router.get('/registerStore', function(req, res, next) {
   res.render('register-store');
@@ -75,6 +83,14 @@ router.post('/editStore', function(req, res, next) {
   storeModel.updateStore(data,(err,results)=>{
     if (err) throw err;
     res.redirect('/users');
+});
+
+router.post('/deleteStore', function(req, res, next) {
+  var id = req.body.id;
+  storeModel.deleteStore(id,(err,results) => {
+    if (err) throw err;
+    res.redirect('/users');
+  });
 });
 
 // Routes for menu modification
@@ -114,6 +130,13 @@ router.post('/editItem', function(req, res, next) {
     res.redirect('/view-items');
 });
 
+router.post('/deleteItem', function(req, res, next) {
+  var id = req.body.id;
+  itemModel.deleteItem(id,(err,results) => {
+    if (err) throw err;
+    res.redirect('/view-items');
+  });
+});
 
 // Routes for order placement
 router.get('/order', function(req, res, next) {
