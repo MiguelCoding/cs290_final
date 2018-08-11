@@ -103,11 +103,14 @@ router.get('/viewMenu', function(req, res, next) {
 });
 
 router.get('/addItem', function(req, res, next) {
-  res.render('add-item', { title: 'Register a new store' });
+  res.render('add-item');
 });
 
 router.post('/addItem', function(req, res, next) {
-  res.render('register-user', { title: 'Register a new store' });
+  var data = req.body;
+  menuModel.insertItems(data,(err,results)=>{
+    if (err) throw err;
+    res.redirect('/view-items');
 });
 
 router.get('/editItem', function(req, res, next) {
@@ -116,7 +119,7 @@ router.get('/editItem', function(req, res, next) {
 
 router.get('/editItem',function(req,res) {
   var itemId = req.query.itemId;
-  itemModel.retrieveItem(itemId,(err,results)=> {
+  menuModel.retrieveItem(itemId,(err,results)=> {
     if (err) throw err;
     var item = results[0];
     res.render('edit-item',{item});
@@ -132,7 +135,7 @@ router.post('/editItem', function(req, res, next) {
 
 router.post('/deleteItem', function(req, res, next) {
   var id = req.body.id;
-  itemModel.deleteItem(id,(err,results) => {
+  menuModel.deleteItem(id,(err,results) => {
     if (err) throw err;
     res.redirect('/view-items');
   });
