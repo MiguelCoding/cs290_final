@@ -4,7 +4,7 @@ const config = require('../config/dbcredentials.json');
 
 var conPool = db.createPool(config);
 
-function retrieveMenuData(id,callback) {
+function retrieveMenu(id,callback) {
   conPool.query("select * from final_items where STORE_ID=?",[id],(err,results)=>{
     callback(err,results);
   });
@@ -29,7 +29,7 @@ function deleteItem(id,callback) {
 };
 
 module.exports = {
-  retrieveMenuData: retrieveMenuData,
+  retrieveMenu: retrieveMenu,
   insertItem: insertItem,
   updateItem: updateItem,
   deleteItem: deleteItem

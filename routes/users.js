@@ -40,7 +40,11 @@ router.post('/registerStore', function(req, res, next) {
 
 // Routes for menu modification
 router.get('/viewMenu', function(req, res, next) {
-  res.render('view-items', { title: 'Register a new store' });
+  var id = req.query.store_id
+  courseModel.retrieveMenu(id,(err, results) => {
+    if (err) throw err;
+    res.render('course-list', { courses: results });
+  })
 });
 
 router.get('/addItem', function(req, res, next) {
