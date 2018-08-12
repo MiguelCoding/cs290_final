@@ -46,6 +46,7 @@ router.post('/editUser', function(req, res, next) {
   userModel.updateUser(data,(err,results)=>{
     if (err) throw err;
     res.redirect('/users');
+  });
 });
 
 router.post('/deleteUser', function(req, res, next) {
@@ -83,6 +84,7 @@ router.post('/editStore', function(req, res, next) {
   storeModel.updateStore(data,(err,results)=>{
     if (err) throw err;
     res.redirect('/users');
+  });
 });
 
 router.post('/deleteStore', function(req, res, next) {
@@ -99,7 +101,7 @@ router.get('/viewMenu', function(req, res, next) {
   menuModel.retrieveMenu(id,(err, results) => {
     if (err) throw err;
     res.render('view-items', { items: results });
-  })
+  });
 });
 
 router.get('/addItem', function(req, res, next) {
@@ -111,6 +113,7 @@ router.post('/addItem', function(req, res, next) {
   menuModel.insertItems(data,(err,results)=>{
     if (err) throw err;
     res.redirect('/view-items');
+  });
 });
 
 router.get('/editItem', function(req, res, next) {
@@ -131,6 +134,7 @@ router.post('/editItem', function(req, res, next) {
   menuModel.updateMenu(data,(err,results)=>{
     if (err) throw err;
     res.redirect('/view-items');
+  });
 });
 
 router.post('/deleteItem', function(req, res, next) {
