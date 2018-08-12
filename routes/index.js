@@ -3,6 +3,11 @@ var router = express.Router();
 var userModel = require('../models/user');
 var storeModel = require('../models/store');
 
+var googleMapsClient = require('@google/maps').createClient({
+  key: 'AIzaSyCAZ212qFizNdPK3beyplkpd_J-yxbSTIw' //API KEY FOR CS_290
+  
+});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Login or view store map' });
