@@ -9,6 +9,7 @@
     "@google/maps": "^0.5.5",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
+    "connect": "^3.6.6",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
