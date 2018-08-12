@@ -6,6 +6,11 @@ var menuModel = require('../models/menu');
 var bcrypt = require('bcrypt');
 var connect = require('connect');
 
+var googleMapsClient = require('@google/maps').createClient({
+  key: 'AIzaSyCAZ212qFizNdPK3beyplkpd_J-yxbSTIw' //API KEY FOR CS_290
+  
+});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Login or view store map' });
