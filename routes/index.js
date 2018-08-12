@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var userModel = require('../models/user');
 var storeModel = require('../models/store');
+var menuModel = require('../models/menu');
+var bcrypt = require('bcrypt');
+var connect = require('connect');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

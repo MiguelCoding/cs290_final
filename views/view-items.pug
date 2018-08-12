@@ -22,7 +22,7 @@ block content
         td.cell #{item.TYPE}
         td.cell #{item.ITEM_COST}
         td.cell
-          button.btn.btn-info(type="button" onclick='edit('+JSON.stringify(course)+')') Edit
+          button.btn.btn-info(type="button" onclick='edit('+JSON.stringify(item)+')') Edit
         td.cell
           form(id="deleteItemform"+course.ID,method="POST", action="./deleteItem")
             input(type='hidden',name='id',value=item.ID)
