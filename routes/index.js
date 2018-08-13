@@ -16,7 +16,7 @@ router.get('/map', function(req, res, next) {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
     zoom: 8
-  }
+  });
   res.render('map', { apiKeys, title: 'Stores near you' });
 });
 

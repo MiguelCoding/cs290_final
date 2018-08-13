@@ -2,15 +2,18 @@ extends layout
 
 block content
   h1= title
-  form(method="POST", action="/login",autocomplete='on')
-    .form-group
-      label(for="Username") Username
-      input#USERNAME.form-control( name="USERNAME", required, autofocus="autofocus", placeholder="Username")
-    .form-group
-      label(for="Password") Password
-      input#PASSWORD.form-control( name="PASSWORD", required, autofocus="autofocus", placeholder="Enter your password")
-    .form-group
-        button.btn.btn-primary(type="submit") Login
+  .main.container
+  .row
+    .col-md-6.col-md-offset-3
+      h1.display-4.m-b-2 Log In
+      form(method='POST' action='/login')
+        div.form-group
+          label(for='email') Email
+          input.form-control(type='text' id='email' placeholder='email' name='email')
+        div.form-group
+          label(for='password') Password
+          input.form-control(type='password' id='password' placeholder='password' name='password')
+        button.btn.btn-primary(type='submit') Log in
 
   form(method="GET", action="/users/registerUser",autocomplete='on')
     .form-group

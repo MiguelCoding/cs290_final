@@ -44,27 +44,27 @@ var UserSchema = new mongoose.Schema({
   },
   address_lat: {
     type: String,
-    required: flase,
+    required: false,
     trim: true
   },
   address_lon: {
     type: String,
-    required: flase,
+    required: false,
     trim: true
   },
   phone_home: {
     type: String,
-    required: flase,
+    required: false,
     trim: true
   },
   phone_mobile: {
     type: String,
-    required: flase,
+    required: false,
     trim: true
   },
   phone_work: {
     type: String,
-    required: flase,
+    required: false,
     trim: true
   },
   password: {
