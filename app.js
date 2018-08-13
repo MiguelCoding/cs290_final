@@ -3,11 +3,37 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+//use sessions for tracking logins
+app.use(session({
+secret: 'Food Love',
+resave: true,
+saveUnitialized: false,
+}));
+
+//make up user id available in templates
+app.use(function(req, res, next){
+  res.locals.currentUser = req.session.userId;
+  next();
+});
+
+// mongodb connection
+mongoose.connect("mongodb://manhaduy:Emlasiunhan1@ds141082.mlab.com:41082/cs290");
+var db = mongoose.connection;
+
+//mongo Error
+db.on('error', console.error.bind(console, 'connection error:'));
+
+// parse incoming requests
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,7 +50,9 @@ app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  var err = new Error('File Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handler
