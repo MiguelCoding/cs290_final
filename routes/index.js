@@ -16,7 +16,6 @@ router.get('/', function(req, res, next) {
 
 // Route for displaying public map
 router.get('/map', function(req, res, next) {
-  console.log(apiKeys);
   res.render('map', { apiKey: apiKeys.mapsStaticKey, title: 'Stores near you' });
 });
 
@@ -73,7 +72,13 @@ router.post('/register', function(req,res, next){
 
   if (
     req.body.email &&
-    req.body.name &&
+    req.body.name_first &&
+    req.body.name_last &&
+    req.body.address_street &&
+    req.body.address_city &&
+    req.body.address_state &&
+    req.body.address_zip &&
+    req.body.phone &&
     req.body.password &&
     req.body.confirmPassword
   ) {
@@ -95,7 +100,7 @@ router.post('/register', function(req,res, next){
       address_city: req.body.address_city,
       address_state: req.body.address_state,
       address_zip: req.body.address_zip,
-      phone_home: req.body.phone,
+      phone: req.body.phone,
     };
 
     // use schema's create method to insert into mongo
