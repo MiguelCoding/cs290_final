@@ -128,4 +128,14 @@ router.get('/contact', function(req, res, next) {
   return res.render('contact', { title: 'Contact' });
 });
 
+// Routes for order placement
+router.get('/order', function(req, res, next) {
+  res.render('order', { title: 'Place an order' });
+});
+
+router.post('/order', function(req, res, next) {
+  var order = req.body;
+  res.render('order submitted!');
+});
+
 module.exports = router;
