@@ -20,7 +20,7 @@ router.get('/map', function(req, res, next) {
 });
 
 router.get('/profile', mid.requiresLogin, function(req, res, next) {
-  User.findById(req.session.userId)
+  userModel.findById(req.session.userId)
       .exec(function (error, user) {
         if (error) {
           return next(error);
@@ -45,7 +45,7 @@ router.get('/login', mid.loggedOut, function(req, res, next) {
 
 router.post('/login', function(req,res, next){
   if (req.body.email && req.body.password){
-    User.authenticate(req.body.email, req.body.password, function(error,user){
+    userModel.authenticate(req.body.email, req.body.password, function(error,user){
       if (error || !user) {
         var err = new Error('Incorrect email and/or password. ');
         err.status = 401;
@@ -104,7 +104,7 @@ router.post('/register', function(req,res, next){
     };
 
     // use schema's create method to insert into mongo
-    User.create(userData, function (error, user) {
+    userModel.create(userData, function (error, user) {
       if (error){
         return next(error);
       } else {
