@@ -14,9 +14,9 @@ var app = express();
 
 //use sessions for tracking logins
 app.use(session({
-secret: 'Food Love',
-resave: true,
-saveUnitialized: false,
+  secret: 'Food Love',
+  resave: true,
+  saveUninitialized: true
 }));
 
 //make up user id available in templates
@@ -26,7 +26,7 @@ app.use(function(req, res, next){
 });
 
 // mongodb connection
-mongoose.connect("mongodb://manhaduy:Emlasiunhan1@ds141082.mlab.com:41082/cs290");
+mongoose.connect("mongodb://manhaduy:Emlasiunhan1@ds141082.mlab.com:41082/cs290", { useNewUrlParser: true });
 var db = mongoose.connection;
 
 //mongo Error

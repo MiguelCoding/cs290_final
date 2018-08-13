@@ -4,6 +4,10 @@ var userModel = require('../models/user');
 var storeModel = require('../models/store');
 var menuModel = require('../models/menu');
 var mid = require('../middleware');
+var apiKeys = require('../config/apicredentials.json');
+var googleMapsClient = require('@google/maps').createClient({
+  key: apiKeys.mapsStaticKey
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,12 +16,8 @@ router.get('/', function(req, res, next) {
 
 // Route for displaying public map
 router.get('/map', function(req, res, next) {
-  apiKeys = require('../config/apicredentials.json');
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 8
-  });
-  res.render('map', { apiKeys, title: 'Stores near you' });
+  console.log(apiKeys);
+  res.render('map', { apiKey: apiKeys.mapsStaticKey, title: 'Stores near you' });
 });
 
 router.get('/profile', mid.requiresLogin, function(req, res, next) {

@@ -26,4 +26,8 @@ html
       zoom: 8
       });
       }
-    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCAZ212qFizNdPK3beyplkpd_J-yxbSTIw&callback=initMap', async='', defer='')
+    script.
+      var apiKey = "#{apiKey}";
+      var script = document.createElement('script');
+      script.src = "https://maps.googleapis.com/maps/api/js?key=" + apiKey +  "&callback=initMap"
+      document.body.appendChild(script);
