@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Sign Up
+
+        // register form
+        form(method='POST' action='/register')
+          div.form-group
+            label(for='email') Email:
+            input#email.form-control(type='email', required, placeholder='name@email.com' name='email')
+          div.form-group
+            label(for='pw') Password:
+            input#pw.form-control(type='password' name='password')
+          div.form-group
+            label(for='pw2') Confirm Password:
+            input#pw2.form-control(type='password' name='confirmPassword')
+          div.form-group
+            label(for='name_first') First Name:
+            input#name_first.form-control(type='text', required, placeholder='first' name='name_first')
+          div.form-group
+            label(for='name_middle') Middle Name:
+            input#name_middle.form-control(type='text', placeholder='middle' name='name_middle')
+          div.form-group
+            label(for='name_last') Last Name:
+            input#name_last.form-control(type='text', required, placeholder='last' name='name_last')
+          div.form-group
+            label(for='address_street') Address:
+            input#address_street.form-control(type='text', required, placeholder='first' name='address_street')
+          div.form-group
+            label(for='address_city') City:
+            input#address_city.form-control(type='text', required, placeholder='first' name='address_city')
+          div.form-group
+            label(for='address_state') State:
+            input#address_state.form-control(type='text', required, placeholder='first' name='address_state')
+          div.form-group
+            label(for='address_zip') Zip:
+            input#address_zip.form-control(type='text', required, placeholder='first' name='address_zip')
+          div.form-group
+            label(for='phone_home') Home Phone:
+            input#phone_home.form-control(type='text', required, placeholder='first' name='phone_home')
+          div.form-group
+            label(for='phone_mobile') Mobile Phone:
+            input#phone_mobile.form-control(type='text', required, placeholder='first' name='phone_mobile')
+          div.form-group
+            label(for='phone_work') Work Phone:
+            input#phone_work.form-control(type='text', required, placeholder='first' name='phone_work')
+          button.btn.btn-primary(type='submit') Sign up
