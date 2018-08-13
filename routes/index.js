@@ -3,13 +3,7 @@ var router = express.Router();
 var userModel = require('../models/user');
 var storeModel = require('../models/store');
 var menuModel = require('../models/menu');
-var bcrypt = require('bcrypt');
-var connect = require('connect');
-
-var googleMapsClient = require('@google/maps').createClient({
-  key: 'AIzaSyCAZ212qFizNdPK3beyplkpd_J-yxbSTIw' //API KEY FOR CS_290
-  
-});
+var mid = require('../middleware');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,7 +13,23 @@ router.get('/', function(req, res, next) {
 // Route for displaying public map
 router.get('/map', function(req, res, next) {
   apiKeys = require('../config/apicredentials.json');
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+  }
   res.render('map', { apiKeys, title: 'Stores near you' });
+});
+
+router.get('/profile', mid.requiresLogin, function(req, res, next) {
+
+  User.findById(req.session.userId)
+      .exec(function (error, user) {
+        if (error) {
+          return next(error);
+        } else {
+          return res.render('profile', { title: 'Profile', name: user.name, favorite: user.favoriteBook });
+        }
+      });
 });
 
 module.exports = router;

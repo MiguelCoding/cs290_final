@@ -1,43 +1,109 @@
-var db = require('mysql2');
+var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
+var UserSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: true,
+  },
+  name_first: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  name_middle: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+  name_last: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  address_street: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  address_city: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  address_state: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  address_zip: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  address_lat: {
+    type: String,
+    required: flase,
+    trim: true
+  },
+  address_lon: {
+    type: String,
+    required: flase,
+    trim: true
+  },
+  phone_home: {
+    type: String,
+    required: flase,
+    trim: true
+  },
+  phone_mobile: {
+    type: String,
+    required: flase,
+    trim: true
+  },
+  phone_work: {
+    type: String,
+    required: flase,
+    trim: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
+});
+// authenticate input against database docuents
+UserSchema.statics.authenticate = function(email, password, callback){
+  User.findOne({email: email })
+    .exec(function (error, user){
+      if (error){
+        return callback(error);
 
-const config = require('../config/dbcredentials.json');
-
-var conPool = db.createPool(config);
-
-function retrieveUsers(data,callback) {
-  conPool.query("select * from final_users",(err,results)=>{
-    callback(err,results);
-  });
-};
-
-function retrieveUser(id,callback) {
-  conPool.query("select * from final_users where ID=?",[id],(err,results)=>{
-    callback(err,results);
-  });
-};
-
-function registerUser(data,callback) {
-  conPool.query("insert into final_users(USER,PASSWORD,NAME_FIRST,NAME_MIDDLE,NAME_LAST,ADDRESS_STREET,ADDRESS_CITY,ADDRESS_STATE,ADDRESS_ZIP,PHONE_HOME,PHONE_WORK,PHONE_MOBILE) values (?,?,?,?,?,?,?,?,?,?,?,?)",[data.USER,data.PASSWORD,data.NAME_FIRST,data.NAME_MIDDLE,data.NAME_LAST,data.ADDRESS_STREET,data.ADDRESS_CITY,data.ADDRESS_STATE,data.ADDRESS_ZIP,data.PHONE_HOME,data.PHONE_MOBILE,data.PHONE_WORK],(err,results) => {
-    callback(err,results);
-  })
-};
-
-function updateUser(data,callback) {
-  conPool.query("update final_users set PASSWORD=?,NAME_FIRST=?,NAME_MIDDLE=?,NAME_LAST=?,ADDRESS_STREET=?,ADDRESS_CITY=?,ADDRESS_STATE=?,ADDRESS_ZIP=?,PHONE_HOME=?,PHONE_MOBILE=?,PHONE_WORK=? where ID=?",[data.PASSWORD,data.NAME_FIRST,data.NAME_MIDDLE,data.NAME_LAST,data.ADDRESS_STREET,data.ADDRESS_CITY,data.ADDRESS_STATE,data.ADDRESS_ZIP,data.PHONE_HOME,data.PHONE_MOBILE,data.PHONE_WORK],(err,results) =>{
-    callback(err,results);
-  });
-};
-
-function deleteUser(id,callback) {
-  conPool.execute("DELETE from final_users where ID=?",[id],(err,results) => {
-    callback(err,results);
-  });
-};
-
-module.exports = {
-  retrieveUsers: retrieveUsers,
-  retrieveUser: retrieveUser,
-  registerUser: registerUser,
-  updateUser: updateUser,
-  deleteUser: deleteUser
+      }else if ( !user ){
+          var err = new Error('User not found. ');
+          err.status = 401;
+          return callback(err);
+      }
+      bcrypt.compare(password, user.password, function(error, result){
+          if(result === true){
+            return callback(null, user);
+          }else{
+            return callback();
+          }
+      })
+    });
 }
+// hash password before saving to database
+UserSchema.pre('save', function(next){
+  var user = this;
+  bcrypt.hash(user.password, 10, function(err,hash){
+      if(err){
+
+        return next(err);
+      }
+      user.password = hash;
+      next();
+  })
+});
+var User = mongoose.model('User', UserSchema);
+module.exports = User;
