@@ -2,57 +2,56 @@ extends layout
 
 block content
   h1= title
-  p
-    a(href='/') Go Home
-  p
-    a(href='/map') Store Map
-  h3 Create a new user
-  form(method="POST", action="./registerUser",autocomplete='on')
-    .form-group
-      label(for="Email") Email
-      input#EMAIL.form-control( type="email" name="EMAIL", required, autofocus="autofocus", placeholder="Enter a valid email address")
-    .form-group
-      label(for="Username") Username
-      input#USER.form-control( name="USER", required, autofocus="autofocus", placeholder="Enter your desired username")
-    .form-group
-      label(for="Password") Password
-      input#PASSWORD_1.form-control( type="password", name="PASSWORD_1", required, autofocus="autofocus", placeholder="Enter your password")
-    .form-group
-      label(for="Password") Verify password
-      input#PASSWORD_2.form-control( type="password", name="PASSWORD_2" ,required ,autofocus="autofocus", placeholder="Verify your password")
-    .form-group
-      label(for="First Name") First Name
-      input#NAME_FIRST.form-control( name="NAME_FIRST", required, autofocus="autofocus", placeholder="First name")
-    .form-group
-      label(for="Middle Name") Middle Name
-      input#NAME_MIDDLE.form-control( name="NAME_MIDDLE", autofocus="autofocus", placeholder="Middle name")
-    .form-group
-      label(for="Last Name") Last Name
-      input#NAME_LAST.form-control( name="NAME_LAST", required, autofocus="autofocus", placeholder="Last name")
-    .form-group
-      label(for="Address") Address
-      input#ADDRESS_STREET.form-control( name="ADDRESS_STREET", required, autofocus="autofocus", placeholder="123 Demo Lane")
-    .form-group
-    label(for="City") City
-      input#ADDRESS_CITY.form-control( name="ADDRESS_CITY", required, autofocus="autofocus", placeholder="Corvallis")
-    .form-group
-      label(for="State") State
-      input#ADDRESS_STATE.form-control( name="ADDRESS_STATE", required, autofocus="autofocus", placeholder="Oregon")
-    .form-group
-      label(for="Zip Code") Zip Code
-      input#ADDRESS_ZIP.form-control( name="ADDRESS_ZIP", required, autofocus="autofocus", placeholder="12345")
-    .form-group
-      label(for="Home Telephone") Home Telephone
-      input#PHONE_HOME.form-control( type="tel", name="PHONE_HOME", autofocus="autofocus", placeholder="5551231234")
-    .form-group
-      label(for="Mobile Telephone") Mobile Telephone
-      input#PHONE_MOBILE.form-control( type="tel", name="PHONE_MOBILE", autofocus="autofocus", placeholder="5551231234")
-    .form-group
-      label(for="Work Telephone") Work Telephone
-      input#PHONE_WORK.form-control( type="tel", name="PHONE_WORK", autofocus="autofocus", placeholder="5551231234")
-    <hr>
-    .form-group
-        button.btn.btn-primary(type="submit") Save
-  form(method="GET", action="/")
-    .form-group
-        button.btn.btn-default(type="submit") Cancel
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Sign Up
+        form(method="POST", action="./registerUser",autocomplete='on')
+          .form-group
+            label(for="Email") Email
+            input#EMAIL.form-control( type="email" name="EMAIL", required, autofocus="autofocus", placeholder="Enter a valid email address")
+          .form-group
+            label(for="Username") Username
+            input#USER.form-control( name="USER", required, autofocus="autofocus", placeholder="Enter your desired username")
+          .form-group
+            label(for="Password") Password
+            input#PASSWORD_1.form-control( type="password", name="PASSWORD_1", required, autofocus="autofocus", placeholder="Enter your password")
+          .form-group
+            label(for="Password") Verify password
+            input#PASSWORD_2.form-control( type="password", name="PASSWORD_2" ,required ,autofocus="autofocus", placeholder="Verify your password")
+          .form-group
+            label(for="First Name") First Name
+            input#NAME_FIRST.form-control( name="NAME_FIRST", required, autofocus="autofocus", placeholder="First name")
+          .form-group
+            label(for="Middle Name") Middle Name
+            input#NAME_MIDDLE.form-control( name="NAME_MIDDLE", autofocus="autofocus", placeholder="Middle name")
+          .form-group
+            label(for="Last Name") Last Name
+            input#NAME_LAST.form-control( name="NAME_LAST", required, autofocus="autofocus", placeholder="Last name")
+          .form-group
+            label(for="Address") Address
+            input#ADDRESS_STREET.form-control( name="ADDRESS_STREET", required, autofocus="autofocus", placeholder="123 Demo Lane")
+          .form-group
+          label(for="City") City
+            input#ADDRESS_CITY.form-control( name="ADDRESS_CITY", required, autofocus="autofocus", placeholder="Corvallis")
+          .form-group
+            label(for="State") State
+            input#ADDRESS_STATE.form-control( name="ADDRESS_STATE", required, autofocus="autofocus", placeholder="Oregon")
+          .form-group
+            label(for="Zip Code") Zip Code
+            input#ADDRESS_ZIP.form-control( name="ADDRESS_ZIP", required, autofocus="autofocus", placeholder="12345")
+          .form-group
+            label(for="Home Telephone") Home Telephone
+            input#PHONE_HOME.form-control( type="tel", name="PHONE_HOME", autofocus="autofocus", placeholder="5551231234")
+          .form-group
+            label(for="Mobile Telephone") Mobile Telephone
+            input#PHONE_MOBILE.form-control( type="tel", name="PHONE_MOBILE", autofocus="autofocus", placeholder="5551231234")
+          .form-group
+            label(for="Work Telephone") Work Telephone
+            input#PHONE_WORK.form-control( type="tel", name="PHONE_WORK", autofocus="autofocus", placeholder="5551231234")
+          <hr>
+          .form-group
+              button.btn.btn-primary(type="submit") Save
+        form(method="GET", action="/")
+          .form-group
+              button.btn.btn-default(type="submit") Cancel

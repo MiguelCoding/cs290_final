@@ -5,45 +5,43 @@ block content
   .container
   .row
     .col-sm-5
-      h2 Items in store
+      h2 Stores in store
     .col-sm-6.align-right
-      input(type='submit',name='save',value='Add Item',onclick='enroll()').btn.btn-info.float-right
+      input(type='submit',name='save',value='Add Store',onclick='enroll()').btn.btn-info.float-right
   br
   table.table.table-hover
     thead.thead-inverse
       tr
         th.cell #
-        th.cell Item
-        th.cell Price
+        th.cell Store
     - var index = 1
-    - items.forEach(function(item) {
+    - stores.forEach(function(store) {
       tr
         th(scope='row') #{index}
-        td.cell #{item.TYPE}
-        td.cell #{item.ITEM_COST}
+        td.cell #{store.TYPE}
         td.cell
-          button.btn.btn-info(type="button" onclick='edit('+JSON.stringify(item)+')') Edit
+          button.btn.btn-info(type="button" onclick='edit('+JSON.stringify(store)+')') Edit
         td.cell
-          form(id="deleteItemform"+course.ID,method="POST", action="./deleteItem")
-            input(type='hidden',name='id',value=item.ID)
-            input(type='button', name='delete', value='Delete' id="deleteItemBtn" onClick='append('+JSON.stringify(item)+')' data-toggle="modal" data-target="#confirm-delete").btn.btn-danger
+          form(id="deleteStoreform"+course.ID,method="POST", action="./deleteStore")
+            input(type='hidden',name='id',value=store.ID)
+            input(type='button', name='delete', value='Delete' id="deleteStoreBtn" onClick='append('+JSON.stringify(store)+')' data-toggle="modal" data-target="#confirm-delete").btn.btn-danger
         - index ++
     - })
   #confirm-delete.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
     .modal-dialog
       .modal-content
-        .modal-body Are you sure you want to delete this item?
+        .modal-body Are you sure you want to delete this store?
           input(type='hidden',id='deleteId')
         .modal-footer
           button.btn.btn-default(type='button', data-dismiss='modal') Cancel
           a#submitModal.btn.btn-danger(href='#') Delete
   script.
-      function edit(item){
-      location="./editItem?itemId=" + item.ID;
+      function edit(store){
+      location="./editStore?storeId=" + store.ID;
       };
 
       function enroll(){
-      href="./addItem";
+      href="./addStore";
       window.location.href = this.href;
       };
 
@@ -53,6 +51,6 @@ block content
 
       $('#submitModal').click(function () {
           var deleteId = $('#deleteId').val()
-          var x ='#deleteItemform'+deleteId
+          var x ='#deleteStoreform'+deleteId
           $(x).submit();
       });

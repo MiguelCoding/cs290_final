@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Sign Up
+        form(method='POST' action='/register')
+          div.form-group
+            label(for='email') Email:
+            input#email.form-control(type='email', required, placeholder='name@email.com' name='email')
+          div.form-group
+            label(for='password') Password:
+            input#password.form-control(type='password' name='password')
+          div.form-group
+            label(for='confirmPassword') Confirm Password:
+            input#confirmPassword.form-control(type='password' name='confirmPassword')
+          div.form-group
+            label(for='name_first') First Name:
+            input#name_first.form-control(type='text', required, placeholder='first' name='name_first')
+          div.form-group
+            label(for='name_last') Last Name:
+            input#name_last.form-control(type='text', required, placeholder='last' name='name_last')
+          div.form-group
+            label(for='address_street') Address:
+            input#address_street.form-control(type='text', required, placeholder='123 Demo Lane' name='address_street')
+          div.form-group
+            label(for='address_city') City:
+            input#address_city.form-control(type='text', required, placeholder='Corvallis' name='address_city')
+          div.form-group
+            label(for='address_state') State:
+            input#address_state.form-control(type='text', required, placeholder='Oregon' name='address_state')
+          div.form-group
+            label(for='address_zip') Zip:
+            input#address_zip.form-control(type='text', required, placeholder='12345' name='address_zip')
+          div.form-group
+            label(for='phone') Phone:
+            input#phone.form-control(type='tel', required, placeholder='5555555555' name='phone')
+          button.btn.btn-primary(type='submit') Sign up
