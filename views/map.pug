@@ -8,18 +8,68 @@ block content
       #map {
       top: 50%;
       left: 50%;
-      height: 50%;
-      width: 50%;
+      height: 70%;
+      width: 70%;
       transform: translate(-50%, -50%);
       }
   #map
   script.
     var map;
     function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 44.6563, lng: -123.319},
-    zoom: 8
-    });
+      var broadway = {
+        info: '<strong>Sushi on Third Street</strong><br>\
+              122 nw 23rd<br> Corvallis, OR 97330<br>\
+              <a href="https://bit.ly/2Mi1JSw">Get Directions</a>', //shorten www. adress using bitly
+        lat: 44.5696208,
+        long: -123.2675543
+      };
+
+      var belmont = {
+        info: '<strong>Chipotle on Belmont</strong><br>\
+              1025 W Belmont Ave<br> Chicago, IL 60657<br>\
+              <a href="https://goo.gl/maps/PHfsWTvgKa92">Get Directions</a>',
+        lat: 41.939670,
+        long: -87.655167
+      };
+
+      var sheridan = {
+        info: '<strong>Chipotle on Sheridan</strong><br>\r\
+              6600 N Sheridan Rd<br> Chicago, IL 60626<br>\
+              <a href="https://goo.gl/maps/QGUrqZPsYp92">Get Directions</a>',
+        lat: 42.002707,
+        long: -87.661236
+      };
+
+      var locations = [
+        [broadway.info, broadway.lat, broadway.long, 0],
+        [belmont.info, belmont.lat, belmont.long, 1],
+        [sheridan.info, sheridan.lat, sheridan.long, 2],
+      ];
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: new google.maps.LatLng(44.5658408, -123.2976963),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+      var infowindow = new google.maps.InfoWindow({});
+
+      var marker, i;
+
+      for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+          map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+          return function () {
+            infowindow.setContent(locations[i][0]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
+      }
+
     }
   script.
     var apiKey = "#{apiKey}";
