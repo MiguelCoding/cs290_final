@@ -21,13 +21,12 @@ router.get('/map', function(req, res, next) {
 });
 
 router.get('/profile', mid.requiresLogin, function(req, res, next) {
-
   User.findById(req.session.userId)
       .exec(function (error, user) {
         if (error) {
           return next(error);
         } else {
-          return res.render('profile', { title: 'Profile', name: user.name, favorite: user.favoriteBook });
+          return res.render('profile', { title: 'Profile', name: user.name });
         }
       });
 });
@@ -72,10 +71,12 @@ return res.render('register', { title: 'Sign Up'});
 
 router.post('/register', function(req,res, next){
 
-  if (req.body.email &&
-  req.body.name &&
-  req.body.password &&
-  req.body.confirmPassword) {
+  if (
+    req.body.email &&
+    req.body.name &&
+    req.body.password &&
+    req.body.confirmPassword
+  ) {
 
     //confirm that user typed same password twice
     if (req.body.password !== req.body.confirmPassword){
@@ -89,15 +90,12 @@ router.post('/register', function(req,res, next){
       email: req.body.email,
       password: req.body.password,
       name_first: req.body.name_first,
-      name_middle: req.body.name_middle,
       name_last: req.body.name_last,
       address_street: req.body.address_street,
       address_city: req.body.address_city,
       address_state: req.body.address_state,
       address_zip: req.body.address_zip,
-      phone_home: req.body.phone_home,
-      phone_mobile: req.body.phone_mobile,
-      phone_work: req.body.phone_work
+      phone_home: req.body.phone,
     };
 
     // use schema's create method to insert into mongo
@@ -116,5 +114,13 @@ router.post('/register', function(req,res, next){
     return next(err);
   }
 })
+
+router.get('/about',function(req, res, next) {
+  return res.render('about', { title: 'About' });
+});
+
+router.get('/contact', function(req, res, next) {
+  return res.render('contact', { title: 'Contact' });
+});
 
 module.exports = router;
