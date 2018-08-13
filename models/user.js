@@ -7,6 +7,10 @@ var UserSchema = new mongoose.Schema({
     trim: true,
     unique: true,
   },
+  password: {
+    type: String,
+    required: true
+  },
   name_first: {
     type: String,
     required: true,
@@ -66,10 +70,6 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: false,
     trim: true
-  },
-  password: {
-    type: String,
-    required: true
   }
 });
 // authenticate input against database docuents
