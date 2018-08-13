@@ -5,6 +5,8 @@ nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
       a.navbar-brand(href='/') Home
 
       .nav-items.clearfix
+        if currentUser
+          a.nav-item.nav-link(href='/order') Order
         if !currentUser
           a.nav-item.nav-link(href='/map') Stores
           a.nav-item.nav-link(href='/register') Sign Up
